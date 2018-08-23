@@ -1,0 +1,33 @@
+package com.Java;
+import java.util.Stack;
+public class No07 {
+	public static void main(String[] args) {
+		Stack<Integer> stack1=new Stack<Integer>();
+		Stack<Integer> stack2=new Stack<Integer>();
+		Stack<Integer> stackTemp=new Stack<Integer>();//用于模拟建栈过程
+		for (Integer i=5;i>0;i--){
+			stack1.push(i);
+		}//Stack1是入栈顺序
+		stack2.push(2);
+		stack2.push(1);
+		stack2.push(5);
+		stack2.push(3);
+		stack2.push(4);//Stack2是出栈顺序；
+		while (!stack1.isEmpty() && !stack2.isEmpty()) {
+			if(!stackTemp.isEmpty() && (stackTemp.peek()==stack2.peek())) {
+				stackTemp.pop();
+				stack2.pop();
+			}else {
+				if (stack2.peek() != stack1.peek())
+					stackTemp.push(stack1.pop());
+				else {
+					stack1.pop();
+					stack2.pop();
+				}
+			}
+		}
+		if(stack2.peek()!=stackTemp.peek())
+			System.out.println(" Not a correct order.");
+		else System.out.println("A correct order.");
+	}
+}

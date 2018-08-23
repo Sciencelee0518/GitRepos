@@ -1,0 +1,52 @@
+package com.Java;
+import java.util.Stack;
+public class No21 {
+	public static void main(String[] args) {
+	Stack<Integer> stack1;
+	stack1=new Stack<Integer>();//为了构造初始化，或者setter赋值；
+
+	MyQueue Q1=new MyQueue();
+
+	for (Integer i=1;i<6;i++){
+			stack1.push(i);
+	}
+	Q1.setter(stack1);
+	System.out.println("Origin: " + Q1.getter1());
+	Q1.appendTail(18);
+
+	System.out.println("Insert 18: " + Q1.getter1());
+	int Head = Q1.deleteHead();
+	System.out.println("Head: " + Head);
+	System.out.println("After deleteHead: " + Q1.getter1());
+	}
+}
+
+class MyQueue {
+	private Stack<Integer> stack1;
+	public MyQueue(){
+		stack1=new Stack<Integer>();
+	}
+	public void setter(Stack<Integer>  STACK1){
+		this.stack1=STACK1;
+	}
+	public Stack<Integer> getter1(){
+		return stack1;
+	}
+	void appendTail(Integer tail){
+		stack1.push(tail);
+	}
+	Integer deleteHead(){
+		Stack<Integer> stackTemp;
+		stackTemp=new Stack<Integer>();
+		while (!this.stack1.empty())
+		{
+			stackTemp.push(stack1.pop());
+		}
+		int Head=stackTemp.pop();
+		while (!stackTemp.empty())
+		{
+			this.stack1.push(stackTemp.pop());
+		}
+		return Head;
+	}
+}
